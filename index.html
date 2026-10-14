@@ -52,10 +52,12 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, sans-serif; }
         body { background-color: var(--gris-fondo); color: var(--texto); line-height: 1.6; }
         
-        /* BARRA SUPERIOR */
-        header { background-color: var(--verde-oscuro); color: var(--blanco); padding: 1rem 5%; position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
-        .logo-texto { font-size: 1.25rem; font-weight: 800; letter-spacing: 0.5px; color: var(--blanco); text-decoration: none; }
-        .logo-texto span { color: var(--dorado); }
+        /* BARRA SUPERIOR CON LOGO */
+        header { background-color: var(--verde-oscuro); color: var(--blanco); padding: 0.8rem 5%; position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .logo-contenedor { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-img { height: 45px; width: 45px; object-fit: contain; border-radius: 6px; background: white; padding: 2px; }
+        .logo-texto { font-size: 1.2rem; font-weight: 800; letter-spacing: 0.5px; color: var(--blanco); }
+        .logo-texto span { color: var(--dorado); display: block; font-size: 0.75rem; letter-spacing: 2px; font-weight: 600; }
         .btn-header { background-color: var(--dorado); color: var(--verde-oscuro); padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.9rem; }
 
         /* PORTADA PRINCIPAL (HERO) */
@@ -86,13 +88,17 @@
         .grid-propiedades { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1.6rem; }
         .tarjeta { background: var(--blanco); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 14px rgba(0,0,0,0.06); border: 1px solid #e1e8e4; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; }
         .tarjeta:hover { transform: translateY(-3px); }
+        
+        /* IMAGEN DE LA PROPIEDAD */
+        .tarjeta-imagen { width: 100%; height: 200px; object-fit: cover; background-color: #e8ece9; border-bottom: 1px solid #e1e8e4; }
+
+        .tarjeta-cuerpo { padding: 1.5rem; }
         .tarjeta-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.7rem; flex-wrap: wrap; gap: 0.4rem; }
         .badges-izq { display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap; }
         .etiqueta-zona { background: var(--verde-medio); color: var(--blanco); padding: 0.3rem 0.7rem; font-size: 0.73rem; font-weight: 700; text-transform: uppercase; border-radius: 4px; letter-spacing: 0.4px; }
         .etiqueta-ciudad { background: var(--dorado-claro); color: var(--verde-oscuro); border: 1px solid var(--dorado); padding: 0.25rem 0.65rem; font-size: 0.75rem; font-weight: 700; border-radius: 4px; }
         .codigo-id { font-size: 0.8rem; font-weight: 700; color: #7f8c8d; }
         
-        .tarjeta-cuerpo { padding: 1.5rem; }
         .tarjeta h3 { color: var(--verde-oscuro); font-size: 1.3rem; margin-bottom: 0.4rem; line-height: 1.3; }
         .precio { font-size: 1.45rem; font-weight: 800; color: var(--verde-medio); margin-bottom: 0.8rem; display: block; }
         .precio span { font-size: 0.85rem; font-weight: 600; color: #666; }
@@ -128,9 +134,15 @@
 </head>
 <body>
 
-    <!-- ENCABEZADO -->
+    <!-- ENCABEZADO CON LOGO -->
     <header>
-        <a href="#" class="logo-texto">PALOS VERDES <span>INMOBILIARIA</span></a>
+        <a href="#" class="logo-contenedor">
+            <img src="img/logo.png" alt="Palos Verdes Inmobiliaria" class="logo-img">
+            <div class="logo-texto">
+                PALOS VERDES
+                <span>INMOBILIARIA</span>
+            </div>
+        </a>
         <a href="https://wa.me/526681631420?text=Hola,%20busco%20informaci%C3%B3n%20sobre%20sus%20propiedades%20en%20venta" class="btn-header">668 163 1420</a>
     </header>
 
@@ -141,16 +153,15 @@
         <a href="#propiedades" class="btn-principal">Ver Inventario Disponible</a>
     </section>
 
-    <!-- CATÁLOGO DE PROPIEDADES DE DRIVE -->
+    <!-- CATÁLOGO DE PROPIEDADES -->
     <main class="contenedor" id="propiedades">
         <div class="titulo-seccion">
             <h2>Propiedades Disponibles</h2>
             <p>Filtra por ciudad o tipo de inmueble para consultar su ficha técnica interactiva, mapa y simulador.</p>
         </div>
 
-        <!-- PANEL DOBLE DE FILTROS (UBICACIÓN + CATEGORÍA) -->
+        <!-- PANEL DOBLE DE FILTROS -->
         <div class="panel-filtros">
-            <!-- FILTRO 1: UBICACIÓN -->
             <div class="grupo-filtro">
                 <span class="etiqueta-filtro">1. Selecciona la Ubicación:</span>
                 <div class="filtros">
@@ -160,7 +171,6 @@
                 </div>
             </div>
 
-            <!-- FILTRO 2: TIPO DE PROPIEDAD -->
             <div class="grupo-filtro">
                 <span class="etiqueta-filtro">2. Tipo de Inmueble:</span>
                 <div class="filtros">
@@ -174,8 +184,9 @@
 
         <div class="grid-propiedades">
             
-            <!-- PV-01: 4 HECTARIAS TEHUECO (EL FUERTE) -->
+            <!-- PV-01: 4 HECTARIAS TEHUECO -->
             <article class="tarjeta" data-categoria="terreno" data-ubicacion="fuerte">
+                <img src="img/pv01.jpg" alt="4 Hectáreas en Tehueco" class="tarjeta-imagen" onerror="this.src='https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80'">
                 <div class="tarjeta-cuerpo">
                     <div class="tarjeta-top">
                         <div class="badges-izq">
@@ -199,8 +210,9 @@
                 </div>
             </article>
 
-            <!-- PV-02: CASA LAZARO CARDENAS / PRADO BONITO (LOS MOCHIS) -->
+            <!-- PV-02: CASA LAZARO CARDENAS / PRADO BONITO -->
             <article class="tarjeta" data-categoria="casa" data-ubicacion="mochis">
+                <img src="img/pv02.jpg" alt="Casa Lázaro Cárdenas" class="tarjeta-imagen" onerror="this.src='https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=600&q=80'">
                 <div class="tarjeta-cuerpo">
                     <div class="tarjeta-top">
                         <div class="badges-izq">
@@ -224,8 +236,9 @@
                 </div>
             </article>
 
-            <!-- PV-03: LOCALES EJIDO MEXICO (LOS MOCHIS) -->
+            <!-- PV-03: LOCALES EJIDO MEXICO -->
             <article class="tarjeta" data-categoria="locales" data-ubicacion="mochis">
+                <img src="img/pv03.jpg" alt="Locales Ejido México" class="tarjeta-imagen" onerror="this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80'">
                 <div class="tarjeta-cuerpo">
                     <div class="tarjeta-top">
                         <div class="badges-izq">
@@ -249,8 +262,9 @@
                 </div>
             </article>
 
-            <!-- PV-04: TERRENO FUERTE 1 CUADRA BULEVAR (EL FUERTE) -->
+            <!-- PV-04: TERRENO FUERTE 1 CUADRA BULEVAR -->
             <article class="tarjeta" data-categoria="terreno" data-ubicacion="fuerte">
+                <img src="img/pv04.jpg" alt="Terreno en El Fuerte" class="tarjeta-imagen" onerror="this.src='https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80'">
                 <div class="tarjeta-cuerpo">
                     <div class="tarjeta-top">
                         <div class="badges-izq">
@@ -274,8 +288,9 @@
                 </div>
             </article>
 
-            <!-- PV-05: CASA AMARILLA CENTRO EL FUERTE (EL FUERTE) -->
+            <!-- PV-05: CASA AMARILLA CENTRO EL FUERTE -->
             <article class="tarjeta" data-categoria="casa" data-ubicacion="fuerte">
+                <img src="img/pv05.jpg" alt="Casa Amarilla Centro El Fuerte" class="tarjeta-imagen" onerror="this.src='https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80'">
                 <div class="tarjeta-cuerpo">
                     <div class="tarjeta-top">
                         <div class="badges-izq">
@@ -301,7 +316,7 @@
 
         </div>
 
-        <!-- MENSAJE SI NO HAY COINCIDENCIAS EN LA COMBINACIÓN -->
+        <!-- MENSAJE SI NO HAY COINCIDENCIAS -->
         <div id="mensaje-vacio" class="sin-resultados">
             <h4>No hay propiedades con esa combinación exacta por el momento</h4>
             <p>Prueba seleccionando "Todas las Zonas" o contáctanos por WhatsApp para buscarte una opción a la medida.</p>
@@ -341,7 +356,7 @@
         💬 Atención por WhatsApp
     </a>
 
-    <!-- SCRIPT DE FILTRADO COMBINADO (UBICACIÓN + CATEGORÍA) -->
+    <!-- SCRIPT DE FILTRADO -->
     <script>
         let ubicacionActual = 'todas';
         let categoriaActual = 'todos';
